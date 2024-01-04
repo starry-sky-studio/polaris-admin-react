@@ -17,8 +17,8 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    'react/jsx-no-undef': 'off'
+    '@typescript-eslint/no-explicit-any': 'off'
+    // 'react/jsx-no-undef': 'off'
   },
   settings: {
     react: {

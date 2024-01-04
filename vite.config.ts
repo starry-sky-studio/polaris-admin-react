@@ -55,12 +55,8 @@ export default defineConfig(({ mode }) => {
           'src/providers/**',
           'src/store/**',
           'src/utils/**'
-        ]
-        // eslintrc: {
-        //   enabled: true,
-        //   filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        //   globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
-        // }
+        ],
+        exclude: ['./eslint']
       }),
       Icons({
         autoInstall: true,
