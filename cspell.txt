@@ -37,3 +37,7 @@ vite
 worktree
 zustand
 Avenir
+unocss
+typeof
+EARLYHINTS
+axios

@@ -10,13 +10,40 @@ export const router = createBrowserRouter([
       {
         path: '/system/dictionaries',
         lazy: () => import('@/pages/system/dictionaries'),
-        loader: () => <div>dictionaries</div>
+        loader: () => '字典'
       },
-
       {
-        path: 'team',
+        path: '/system/users',
         lazy: () => import('@/pages/system/users'),
-        loader: () => '<div>users</div>'
+        loader: () => '用户'
+      },
+      {
+        path: '/error-pages',
+        lazy: () => import('@/pages/error-pages'),
+        loader: () => '错误页面',
+
+        children: [
+          {
+            path: '/error-pages/404',
+            lazy: () => import('@/pages/error-pages/404'),
+            loader: () => '资源未找到'
+          },
+          {
+            path: '/error-pages/403',
+            lazy: () => import('@/pages/error-pages/403'),
+            loader: () => '禁止访问'
+          },
+          {
+            path: '/error-pages/500',
+            lazy: () => import('@/pages/error-pages/500'),
+            loader: () => '服务器错误'
+          }
+        ]
+      },
+      {
+        path: '*',
+        lazy: () => import('@/pages/error-pages/404'),
+        loader: () => '资源未找到'
       }
     ]
   },
