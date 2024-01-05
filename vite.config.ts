@@ -45,6 +45,10 @@ export default defineConfig(({ mode }) => {
           {
             from: '@/constants',
             imports: ['AppMetadata', 'GlobalEnvConfig']
+          },
+          {
+            from: 'antd',
+            imports: ['Button', 'Input']
           }
         ],
         dirs: [
@@ -55,8 +59,7 @@ export default defineConfig(({ mode }) => {
           'src/providers/**',
           'src/store/**',
           'src/utils/**'
-        ],
-        exclude: ['./eslint']
+        ]
       }),
       Icons({
         autoInstall: true,

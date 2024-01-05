@@ -41,6 +41,28 @@ export const router = createBrowserRouter([
         ]
       },
       {
+        path: '/system-tools',
+        lazy: () => import('@/pages/system-tools'),
+        loader: () => '系统工具',
+        children: [
+          {
+            path: '/system-tools/websocket',
+            lazy: () => import('@/pages/system-tools/websocket'),
+            loader: () => 'websocket'
+          },
+          {
+            path: '/system-tools/excel',
+            lazy: () => import('@/pages/system-tools/excel'),
+            loader: () => 'excel'
+          },
+          {
+            path: '/system-tools/qrcode',
+            lazy: () => import('@/pages/system-tools/qrcode'),
+            loader: () => '二维码'
+          }
+        ]
+      },
+      {
         path: '*',
         lazy: () => import('@/pages/error-pages/404'),
         loader: () => '资源未找到'
@@ -51,7 +73,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AuthLayout />,
     loader: () => '权限',
-    errorElement: <div>加载出错</div>,
+    //errorElement: <div>加载出错</div>,
     children: [
       {
         path: '/login',
