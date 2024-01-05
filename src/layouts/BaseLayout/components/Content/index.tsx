@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom'
 
 export default function Content() {
   return (
-    <div>
+    <Layout.Content className="overflow-auto  min-h-[calc(100vh-176px)] ">
       <Outlet />
-    </div>
+    </Layout.Content>
   )
 }

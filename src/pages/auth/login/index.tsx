@@ -10,7 +10,12 @@ export function Component() {
   }
   return (
     <div>
-      <Button onClick={handleLogin}>登录</Button>
+      <Button
+        type="primary"
+        onClick={handleLogin}
+      >
+        登录
+      </Button>
       <div className="bg-pink-200">登录div</div>
     </div>
   )

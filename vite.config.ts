@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
-import UnoCSS from 'unocss/vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -18,7 +17,6 @@ export default defineConfig(({ mode }) => {
   }
   return {
     plugins: [
-      UnoCSS(),
       react(),
       AutoImport({
         dts: '@types/auto-imports.d.ts',
@@ -48,7 +46,11 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: 'antd',
-            imports: ['Button', 'Input']
+            imports: ['Button', 'Input', 'Layout']
+          },
+          {
+            from: 'zustand',
+            imports: ['create']
           }
         ],
         dirs: [
