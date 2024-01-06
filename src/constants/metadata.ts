@@ -14,7 +14,7 @@ export const AppMetadata = Object.freeze({
   APP_NAME: 'Polaris Admin React',
   VERSION: '0.0.1',
   FAVICON_URL: '/favicon.ico',
-  TEAM_NAME: 'Bit Ocean',
+  TEAM_NAME: 'Starry Sky',
   TEAM_GITHUB_URL: 'https://github.com/starry-sky-studio',
   REPO_GITHUB_URL: 'https://github.com/starry-sky-studio/polaris-admin-react'
 })

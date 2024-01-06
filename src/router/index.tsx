@@ -8,6 +8,11 @@ export const router = createBrowserRouter([
     loader: () => '<div>加载中</div>',
     children: [
       {
+        path: '/',
+        lazy: () => import('@/pages'),
+        loader: () => '首页'
+      },
+      {
         path: '/system/dictionaries',
         lazy: () => import('@/pages/system/dictionaries'),
         loader: () => '字典'
@@ -21,7 +26,6 @@ export const router = createBrowserRouter([
         path: '/error-pages',
         lazy: () => import('@/pages/error-pages'),
         loader: () => '错误页面',
-
         children: [
           {
             path: '/error-pages/404',
