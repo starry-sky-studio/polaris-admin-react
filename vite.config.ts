@@ -14,6 +14,11 @@ export default defineConfig(({ mode }) => {
       changeOrigin: true,
       rewrite: (path: string) => path.replace(VITE_BASE_API_PREFIX, '')
     }
+    // '/socket.io': {
+    //   target: VITE_BASE_API_URL,
+    //   ws: true,
+    //   changeOrigin: true
+    // }
   }
   return {
     plugins: [
