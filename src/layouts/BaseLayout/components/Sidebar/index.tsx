@@ -7,6 +7,13 @@ const items: MenuProps['items'] = [1, 23, 45, 2].map((icon, index) => ({
 export default function Sidebar() {
   return (
     <Layout.Sider className=" border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0">
+      <div className="h-16">
+        <img
+          src="@/src/assets/favicon.ico"
+          alt=""
+        />
+        <span>{AppMetadata.APP_NAME}</span>
+      </div>
       <Menu
         mode="inline"
         defaultSelectedKeys={['4']}
