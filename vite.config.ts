@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: 'antd',
-            imports: ['Button', 'Input', 'Layout', 'Card']
+            imports: ['Button', 'Input', 'Layout', 'Card', 'message']
           },
           {
             from: 'zustand',

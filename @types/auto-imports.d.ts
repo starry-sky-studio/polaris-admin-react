@@ -34,6 +34,7 @@ declare global {
   const keepPreviousData: typeof import('@tanstack/react-query')['keepPreviousData']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
+  const message: typeof import('antd')['message']
   const socket: typeof import('../src/utils/socket')['socket']
   const startTransition: typeof import('react')['startTransition']
   const useBearStore: typeof import('../src/store/theme')['useBearStore']

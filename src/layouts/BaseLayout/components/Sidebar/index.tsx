@@ -1,11 +1,124 @@
-import { Menu, MenuProps } from 'antd'
+import { Menu } from 'antd'
 import imgUrl from '@/assets/favicon.ico'
-const items: MenuProps['items'] = [1, 23, 45, 2].map((icon, index) => ({
-  key: String(index + 1),
-  icon: 'ic:baseline-person-2',
-  label: `nav ${index + 1}`
-}))
+import type { MenuProps } from 'antd'
+type MenuItem = Required<MenuProps>['items'][number]
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group'
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type
+  } as MenuItem
+}
+
+const items: MenuProps['items'] = [
+  getItem(
+    '系统功能',
+    '/system',
+    <Icon
+      icon="ic:baseline-auto-awesome"
+      height={18}
+    />,
+    [
+      getItem(
+        '字典',
+        '/system/dictionaries',
+        <Icon
+          icon="ic:sharp-menu-book"
+          height={18}
+        />
+      ),
+      getItem(
+        '用户',
+        '/system/users',
+        <Icon
+          icon="ic:baseline-person"
+          height={18}
+        />
+      )
+    ]
+  ),
+  getItem(
+    '系统工具',
+    'system-tools',
+    <Icon
+      icon="ic:baseline-auto-fix-high"
+      height={18}
+    />,
+    [
+      getItem(
+        'websocket',
+        'system-tools/websocket',
+        <Icon
+          icon="ic:round-swap-horizontal-circle"
+          height={18}
+        />
+      ),
+      getItem(
+        '二维码',
+        '/system-tools/qrcode',
+        <Icon
+          icon="ic:sharp-qr-code-2"
+          height={18}
+        />
+      ),
+      getItem(
+        'Excel',
+        '/system-tools/excel',
+        <Icon
+          icon="ic:outline-insert-chart-outlined"
+          height={18}
+        />
+      )
+    ]
+  ),
+
+  getItem(
+    '错误页面',
+    'sub2',
+    <Icon
+      icon="ic:twotone-error-outline"
+      height={18}
+    />,
+    [
+      getItem(
+        '资源未找到',
+        '/error-pages/404',
+        <Icon
+          icon="tabler:error-404"
+          height={18}
+        />
+      ),
+      getItem(
+        '禁止访问',
+        '/error-pages/403',
+        <Icon
+          icon="ic:outline-block"
+          height={18}
+        />
+      ),
+      getItem(
+        '服务器错误',
+        '/error-pages/500',
+        <Icon
+          icon="ic:outline-blur-off"
+          height={18}
+        />
+      )
+    ]
+  )
+]
+
 export default function Sidebar() {
+  const navigator = useNavigate()
   return (
     <Layout.Sider className=" border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0">
       <div className="h-16 flex justify-center items-center gap-2">
@@ -21,6 +134,7 @@ export default function Sidebar() {
         defaultSelectedKeys={['4']}
         items={items}
         className=""
+        onSelect={({ key }) => navigator(key)}
       />
     </Layout.Sider>
   )

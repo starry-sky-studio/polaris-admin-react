@@ -1,7 +1,6 @@
 export function Component() {
   return (
-    <div className="flex justify-center item-center">
-      13123
+    <div className="h-full  flex justify-center items-center">
       <Outlet />
     </div>
   )

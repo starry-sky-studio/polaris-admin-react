@@ -18,7 +18,7 @@ export function Component() {
     socket.emit('events', { id: 'Nest' }, (r: any) => {
       console.log('发送事件了create-something')
       setText(r)
-      console.log(r, 'r')
+      console.log(fooEvents, 'r')
     })
 
     socket.emit('newMessage', 'value', (m: any) => {
@@ -61,24 +61,27 @@ export function Component() {
   }, [])
 
   return (
-    <div className="flex justify-center item-center">
-      111 {text}22
-      <button onClick={onSubmit}>发送</button>
-      <button onClick={connect}>Connect</button>
-      <button
-        className=""
-        onClick={disconnect}
-      >
-        Disconnect
-      </button>
-      <ul>
-        {fooEvents.map((event, index) => (
-          <li key={index}>{event}</li>
-        ))}
-      </ul>
-      <Icon icon="streamline-emojis:disappointed-face" />
-      <p>websocket</p>
-      <Icon icon="streamline-emojis:disappointed-face" />
+    <div className="flex  flex-col justify-center items-center gap-4">
+      <div className="w-96">
+        <Input
+          placeholder="请输入内容"
+          allowClear
+          maxLength={500}
+          showCount
+          onChange={(e) => setText(e.target.value)}
+        />
+      </div>
+      <div className="space-x-2">
+        {text}
+        <Button onClick={connect}>点击连接</Button>
+        <Button
+          type="primary"
+          onClick={onSubmit}
+        >
+          点击发送
+        </Button>
+        <Button onClick={disconnect}>点击断开</Button>
+      </div>
     </div>
   )
 }
