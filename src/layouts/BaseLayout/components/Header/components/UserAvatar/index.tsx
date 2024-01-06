@@ -1,3 +1,5 @@
+import { Dropdown, MenuProps } from 'antd'
+
 enum UserAction {
   'USER.INFO' = '1',
   'CHANGE.PASSWORD' = '2',
@@ -5,77 +7,43 @@ enum UserAction {
 }
 
 export default function UserAvatar() {
-  const { t } = useTranslation(['LAYOUT', 'AUTH'])
-  const { message } = AApp.useApp()
-  const userStore = useUserStore()
   const navigate = useNavigate()
 
-  const menuItems = [
+  const items: MenuProps['items'] = [
     {
       key: UserAction['USER.INFO'],
-      label: t('HEADER.USER.INFO')
+      label: <span onClick={() => navigate('/user-info')}>用户信息</span>
     },
     {
       key: UserAction['CHANGE.PASSWORD'],
-      label: t('HEADER.CHANGE.PASSWORD')
+      label: <span onClick={() => navigate('/change-password')}>修改密码</span>
     },
     {
       key: UserAction.QUIT,
-      label: t('HEADER.LOG.OUT')
+      label: <span onClick={logout}>退出登录</span>
     }
   ]
 
-  // 退出登录
-  const logout = () => {
-    userStore.clearUser()
+  function logout() {
     AuthUtils.clearAccessToken()
     AuthUtils.clearRefreshToken()
     navigate('/login', { replace: true })
-    message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
 
-  // 点击菜单
-  const handleClickMenu = ({ key }: { key: string }) => {
-    switch (key) {
-      case UserAction['USER.INFO']:
-        navigate('/user-info')
-        break
-      case UserAction['CHANGE.PASSWORD']:
-        navigate('/change-password')
-        break
-      case UserAction.QUIT:
-        logout()
-        break
-      default:
-        break
-    }
-  }
-
-  if (!userStore.hasData()) {
-    return null
-  }
+  // if (!userStore.hasData()) {
+  //   return null
+  // }
 
   return (
-    <ADropdown
-      menu={{
-        items: menuItems,
-        onClick: handleClickMenu
-      }}
+    <Dropdown
+      menu={{ items }}
+      placement="bottom"
     >
-      {userStore.user.avatarUrl ? (
-        <AAvatar
-          src={userStore.user.avatarUrl}
-          size={22}
-          className="cursor-pointer !bg-gray-300 hover:shadow"
-        />
-      ) : (
-        <DpIcon
-          className="cursor-pointer"
-          type="Account"
-          size={22}
-          depth={1}
-        />
-      )}
-    </ADropdown>
+      <Icon
+        height={28}
+        icon="mdi:account-circle"
+        className="cursor-pointer text-[#666] dark:text-[#fff]"
+      />
+    </Dropdown>
   )
 }
