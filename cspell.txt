@@ -42,3 +42,4 @@ typeof
 EARLYHINTS
 axios
 Attributify
+exceljs

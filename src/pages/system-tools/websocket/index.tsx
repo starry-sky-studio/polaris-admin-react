@@ -45,6 +45,9 @@ export function Component() {
     socket.on('message', (data) => {
       message.success(`服务端广播的数据 -- ${data}`)
     })
+    socket.on('onMessage', (data) => {
+      message.success(`服务端广播的数据 -- ${data}`)
+    })
 
     return () => {
       socket.off('connect', onConnect)
