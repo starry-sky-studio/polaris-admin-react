@@ -1,47 +1,119 @@
-import { Upload, UploadProps } from 'antd'
-//import { Workbook } from 'exceljs'
-
+import { Upload } from 'antd'
+import { Workbook } from 'exceljs'
+import { TableComponent } from './components'
+import type { UploadFile, UploadProps } from 'antd/es/upload/interface'
 export function Component() {
-  // async function main() {
-  //   const workbook = new Workbook()
-  //   const workbook2 = await workbook.xlsx.readFile('./data.xlsx')
-  //   workbook2.eachSheet((sheet, index1) => {
-  //     console.log('工作表' + index1)
+  const [fileList, setFileList] = useState<UploadFile[]>([])
+  //const [uploading, setUploading] = useState(false);
+  // const handleUpload = () => {
+  //   const formData = new FormData();
+  //   fileList.forEach((file) => {
+  //     formData.append('files[]', file as RcFile);
+  //   });
+  //   setUploading(true);
+  //   console.log()
 
-  //     const value = sheet.getSheetValues()
-  //   })
-  // }
-
-  //上传文件
+  // };
   const props: UploadProps = {
-    name: 'file',
-    multiple: true,
-    action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-    onChange(info: { file: { name?: any; status?: any }; fileList: any }) {
-      const { status } = info.file
-      if (status !== 'uploading') {
-        console.log(info.file, info.fileList)
-      }
-      if (status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully.`)
-      } else if (status === 'error') {
-        message.error(`${info.file.name} file upload failed.`)
-      }
+    onRemove: (file: any) => {
+      const index = fileList.indexOf(file)
+      const newFileList = fileList.slice()
+      newFileList.splice(index, 1)
+      setFileList(newFileList)
     },
-    onDrop(e: { dataTransfer: { files: any } }) {
-      console.log('Dropped files', e.dataTransfer.files)
+    beforeUpload: async (file: any) => {
+      console.log(fileList, 'e')
+      setFileList([...fileList, file])
+      console.log('11111')
+      console.log(fileList, 'e')
+      await readFile(file)
+      return false
     },
-    maxCount: 1
+    fileList
+  }
+
+  //读取文件
+  async function readFile(file: any) {
+    const workbook = new Workbook()
+
+    const workbook2 = await workbook.xlsx.load(file)
+
+    workbook2.eachSheet((sheet, index1) => {
+      console.log('工作表' + index1)
+      const value = sheet.getSheetValues()
+      console.log(value)
+      // sheet.eachRow((row, index2) => {
+      //   const rowData: any[] = []
+      //   row.eachCell((cell, index3) => {
+      //     rowData.push(cell.value)
+      //   })
+      //   console.log('行' + index2, rowData)
+      // })
+    })
+  }
+
+  //excel生成
+
+  async function generateExcel() {
+    const workbook = new Workbook()
+    const worksheet = workbook.addWorksheet('排名')
+    worksheet.columns = [
+      { header: 'ID', key: 'id', width: 20 },
+      { header: '姓名', key: 'name', width: 30 },
+      { header: '出生日期', key: 'birthday', width: 30 },
+      { header: '手机号', key: 'phone', width: 50 }
+    ]
+    const data = [
+      { id: 1, name: '光光', birthday: new Date('1994-07-07'), phone: '13255555555' },
+      { id: 2, name: '东东', birthday: new Date('1994-04-14'), phone: '13222222222' },
+      { id: 3, name: '小刚', birthday: new Date('1995-08-08'), phone: '13211111111' }
+    ]
+
+    worksheet.addRows(data)
+    const res = await workbook.xlsx.writeBuffer()
+    download(res)
+  }
+
+  function download(arrayBuffer: any, title: string = '下载文件.xlsx') {
+    const link = document.createElement('a')
+
+    const blob = new Blob([arrayBuffer])
+    const url = URL.createObjectURL(blob)
+    link.href = url
+    link.download = title
+
+    document.body.appendChild(link)
+
+    link.click()
+    link.addEventListener('click', () => {
+      link.remove()
+    })
   }
 
   return (
-    <div className="flex justify-center item-center">
-      <Upload.Dragger {...props}>
-        <p className="ant-upload-drag-icon">
-          <Icon icon="ic:outline-folder-open" />
-        </p>
-        <p className="ant-upload-text">单击或拖动文件到此区域以上传 支持单个或批量上传</p>
-      </Upload.Dragger>
+    <div className="space-y-2">
+      <div className="flex justify-start item-center gap-2">
+        <Upload
+          listType="picture"
+          maxCount={1}
+          multiple
+          {...props}
+          // customRequest={customRequest}
+        >
+          <Button>导入excel</Button>
+        </Upload>
+        <Upload
+          listType="picture"
+          maxCount={1}
+          multiple
+          // customRequest={customRequest}
+        >
+          <Button>下载excel</Button>
+        </Upload>
+        <Button onClick={readFile}>点击显示</Button>
+        <Button onClick={generateExcel}>点击生成</Button>
+      </div>
+      <TableComponent />
     </div>
   )
 }

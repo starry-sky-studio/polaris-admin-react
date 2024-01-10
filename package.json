@@ -12,6 +12,8 @@
     "cspell:check": "cspell \"**\""
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.18.2",
+    "@ant-design/happy-work-theme": "^1.0.0",
     "@iconify/react": "^4.1.1",
     "@tanstack/react-query": "^5.17.1",
     "@tanstack/react-query-devtools": "^5.17.1",
@@ -26,7 +28,8 @@
     "react-router-dom": "^6.21.1",
     "sass": "^1.69.7",
     "socket.io-client": "^4.7.3",
-    "use-immer": "^0.9.0"
+    "use-immer": "^0.9.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
@@ -41,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
     "cspell": "^8.3.2",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
@@ -48,10 +52,12 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.0",
+    "postcss": "^8.4.33",
     "prettier": "3.1.1",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
     "unplugin-auto-import": "^0.17.3",
     "unplugin-icons": "^0.18.1",
-    "vite": "^5.0.8"
+    "vite": "^5.0.10"
   }
 }

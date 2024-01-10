@@ -77,6 +77,14 @@ const items: MenuProps['items'] = [
           icon="ic:outline-insert-chart-outlined"
           height={18}
         />
+      ),
+      getItem(
+        '分片上传',
+        '/system-tools/multipart-upload',
+        <Icon
+          icon="ic:outline-folder"
+          height={18}
+        />
       )
     ]
   ),

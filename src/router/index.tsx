@@ -63,6 +63,11 @@ export const router = createBrowserRouter([
             path: '/system-tools/qrcode',
             lazy: () => import('@/pages/system-tools/qrcode'),
             loader: () => '二维码'
+          },
+          {
+            path: '/system-tools/multipart-upload',
+            lazy: () => import('@/pages/system-tools/multipart-upload'),
+            loader: () => '图片分片上传'
           }
         ]
       },
