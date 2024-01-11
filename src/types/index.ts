@@ -1,3 +1,3 @@
 export * from './axios'
-export * from './userToken'
+export * from './user'
 export * from './auth'

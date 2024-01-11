@@ -1,5 +1,5 @@
 // import { LoginType } from '@/enums'
-import type { LoginModel, SignupModel, UserToken } from '@/types'
+import type { UserType, SignupModel, TokenModel, LoginBaseModel } from '@/types'
 
 import { httpRequest } from './axios'
 import { LoginType } from '@/enums'
@@ -12,11 +12,11 @@ export class AuthAPI {
   /**
    * 登录
    */
-  static login(data: LoginModel) {
-    return httpRequest.post<UserToken>(
+  static login(data: LoginBaseModel, type: LoginType) {
+    return httpRequest.post<UserType>(
       `${this.AUTH_API_PREFIX}/login`,
       { ...data },
-      { params: { type: LoginType.USERNAME } }
+      { params: { type } }
     )
   }
 
@@ -24,13 +24,13 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return httpRequest.post<UserToken>(`${this.AUTH_API_PREFIX}/signup`, { ...data })
+    return httpRequest.post(`${this.AUTH_API_PREFIX}/signup`, { ...data })
   }
 
   /**
    * 刷新令牌
    */
   static async refresh(token: string) {
-    return httpRequest.post<UserToken>(this.REFRESH_API_URL, {}, { params: { token } })
+    return httpRequest.post<TokenModel>(this.REFRESH_API_URL, {}, { params: { token } })
   }
 }

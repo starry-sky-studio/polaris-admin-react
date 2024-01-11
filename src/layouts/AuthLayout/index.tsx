@@ -12,7 +12,7 @@ export default function AuthLayout() {
         <div className="text-lg"> {AppMetadata.APP_NAME}</div>
       </div>
       <div className="bg-indigo-300 dark:bg-slate-500 w-full sm:w-1/2 h-full flex justify-center items-center ">
-        <div className="w-56 bg-white dark:bg-[#37393e] h-fit p-2 rounded">
+        <div className="w-80 bg-white dark:bg-[#37393e] h-fit p-2 rounded">
           <Outlet />
         </div>
       </div>

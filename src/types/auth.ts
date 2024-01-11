@@ -1,9 +1,10 @@
-export interface LoginModel {
+export interface LoginBaseModel {
   username: string
   password: string
 }
 
-export interface SignupModel {
-  username: string
-  password: string
+export interface RememberModel extends LoginBaseModel {
+  remember: boolean
 }
+
+export interface SignupModel extends LoginBaseModel {}

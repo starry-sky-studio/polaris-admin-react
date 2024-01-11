@@ -68,6 +68,11 @@ export const router = createBrowserRouter([
             path: '/system-tools/multipart-upload',
             lazy: () => import('@/pages/system-tools/multipart-upload'),
             loader: () => '图片分片上传'
+          },
+          {
+            path: '/system-tools/iframe',
+            lazy: () => import('@/pages/system-tools/iframe'),
+            loader: () => 'iframe'
           }
         ]
       },
