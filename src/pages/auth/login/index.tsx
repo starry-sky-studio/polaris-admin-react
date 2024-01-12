@@ -1,35 +1,36 @@
 import { Form, Checkbox, Divider } from 'antd'
-import { RememberModel, LoginBaseModel } from '@/types'
+import { RememberModel, R, UserType } from '@/types'
 import { LoginType } from '@/enums'
+import { useRedirect, useLoginForm, useHandleLoginResult } from './hooks'
 export function Component() {
-  const navigate = useNavigate()
   const [loginType, setLoginType] = useState<LoginType>(LoginType.USERNAME)
+  const { handleRedirect, handleSignup } = useRedirect()
+  const { loginForm, clearPassword, handleRememberPassword } = useLoginForm()
+  const { handleLoginResult } = useHandleLoginResult()
 
-  const onFinish = async (values: RememberModel) => {
-    const { username, password } = values
-    const data: LoginBaseModel = {
-      username,
-      password
-    }
+  const loginMutation = useMutation({
+    mutationFn: (data: RememberModel) => AuthAPI.login(data, loginType),
+    onSuccess: onLoginSuccess,
+    onError: clearPassword
+  })
 
-    try {
-      const res = await AuthAPI.login(data, loginType)
-      console.log(res)
-    } catch (e) {
-      console.log(e)
-    }
-
-    console.log(values)
+  //登录成功
+  function onLoginSuccess(res: R<UserType>) {
+    const { data, msg } = res ?? {}
+    handleLoginResult(data!, msg)
+    handleRememberPassword()
+    handleRedirect()
   }
 
   return (
     <div className="px-2">
       <Form
         name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
+        initialValues={{ remember: false }}
         autoComplete="off"
-        className=""
+        form={loginForm}
+        disabled={loginMutation.isPending}
+        onFinish={(values) => loginMutation.mutate(values)}
       >
         <div className="text-center text-lg py-2">登录</div>
         <Form.Item<RememberModel>
@@ -53,7 +54,7 @@ export function Component() {
             <Checkbox>记住密码</Checkbox>
             <span
               className="cursor-pointer hover:text-indigo-300"
-              onClick={() => navigate('/signup')}
+              onClick={handleSignup}
             >
               注册
             </span>
@@ -65,6 +66,8 @@ export function Component() {
             type="primary"
             htmlType="submit"
             className="w-full"
+            disabled={loginMutation.isPending}
+            loading={loginMutation.isPending}
           >
             登录
           </Button>

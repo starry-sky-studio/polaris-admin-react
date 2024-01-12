@@ -73,4 +73,5 @@ declare global {
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
   const useThemeStore: typeof import('../src/store/theme')['useThemeStore']
   const useTransition: typeof import('react')['useTransition']
+  const useUserStore: typeof import('../src/store/user')['useUserStore']
 }

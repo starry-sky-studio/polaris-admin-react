@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
         imports: [
           'react',
           'react-router-dom',
+
           {
             from: '@tanstack/react-query',
             imports: ['useQueryClient', 'useQuery', 'useQueries', 'useMutation', 'keepPreviousData']

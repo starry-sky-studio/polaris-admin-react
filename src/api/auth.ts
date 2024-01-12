@@ -24,7 +24,7 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return httpRequest.post(`${this.AUTH_API_PREFIX}/signup`, { ...data })
+    return httpRequest.post<string>(`${this.AUTH_API_PREFIX}/signup`, { ...data })
   }
 
   /**

@@ -18,6 +18,7 @@ export interface UserModel {
   website?: string
   birthDate?: Date
   enabled: boolean
+  userRoles: string[]
 }
 
 export interface UserType extends TokenModel {

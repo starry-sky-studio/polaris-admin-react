@@ -9,6 +9,8 @@ export class AuthUtils {
    */
   private static REFRESH_TOKEN_KEY = 'refresh_token'
 
+  private static REMEMBERED_ACCOUNT_KEY = 'remember_account'
+
   /**
    * 获取访问令牌
    * @description 获取 `localStorage` 中存储的访问令牌
@@ -33,6 +35,19 @@ export class AuthUtils {
    */
   static getRefreshToken(): string {
     return localStorage.getItem(this.REFRESH_TOKEN_KEY) ?? ''
+  }
+
+  /**
+   * 获取记住密码的账号密码
+   * @description 获取 `localStorage` 中存储的账号密码
+   * @returns `localStorage` 中存储的账号密码
+   * @example
+   * ```ts
+   * AuthUtils.getRememberedAccount()
+   * ```
+   */
+  static getRememberedAccount(): string {
+    return localStorage.getItem(this.REMEMBERED_ACCOUNT_KEY) ?? ''
   }
 
   /**
@@ -65,15 +80,27 @@ export class AuthUtils {
 
   /**
    * 设置刷新令牌
-   * @description 设置 `localStorage` 中存储的访问令牌
-   * @param token - 访问令牌
+   * @description 设置 `localStorage` 中存储的账号密码
+   * @param data - 转为字符串的账号密码
    * @example
    * ```ts
    * AuthUtils.setRefreshToken("xxx")
    * ```
    */
   static setRefreshToken(token: string) {
-    localStorage.setItem(this.ACCESS_TOKEN_KEY, token)
+    localStorage.setItem(this.REFRESH_TOKEN_KEY, token)
+  }
+
+  /**
+   * 设置记住密码中的账户密码
+   * @description 设置 `localStorage` 中存储密码中的账户密码
+   * @example
+   * ```ts
+   * AuthUtils.setRememberedAccount("xxx")
+   * ```
+   */
+  static setRememberedAccount(data: string) {
+    localStorage.setItem(this.REMEMBERED_ACCOUNT_KEY, data)
   }
 
   /**
@@ -98,6 +125,18 @@ export class AuthUtils {
    */
   static clearAccessToken() {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY)
+  }
+
+  /**
+   * 清除记住的账户密码
+   * @description 清除 `localStorage` 中存储的账户密码
+   * @example
+   * ```ts
+   * AuthUtils.clearRememberedAccount()
+   * ```
+   */
+  static clearRememberedAccount() {
+    localStorage.removeItem(this.REMEMBERED_ACCOUNT_KEY)
   }
 
   /**
