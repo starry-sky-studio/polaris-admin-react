@@ -9,12 +9,26 @@ export default function Component(props: Props) {
     props.handleLoginType(LoginType.EMAIL)
     const url = GitHubAuthUtils.getAuthUrl()
     GitHubAuthUtils.openAuthWindow(url)
-    // window.open(
-    //   'https://github.com/login/oauth/authorize',
-    //   '_blank',
-    //   'width=700, height=500, left=200'
-    // )
   }
+
+  //监听子窗口事件
+  const messageEventListener = (e: MessageEvent) => {
+    if (e.origin !== window.location.origin) {
+      return
+    }
+    // 接收到数据移除监听器
+    window.removeEventListener('message', messageEventListener)
+
+    // 处理从新窗口传递过来的 GitHub 访问令牌
+    const githubAuthCode = e.data
+
+    AuthAPI.loginByGithub(githubAuthCode, LoginType.GITHUB).then((res: any) => {
+      console.log(res, 'res')
+    })
+  }
+
+  // 添加 message 事件监听器
+  window.addEventListener('message', messageEventListener)
 
   return (
     <div>

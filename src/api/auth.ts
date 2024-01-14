@@ -1,6 +1,4 @@
-// import { LoginType } from '@/enums'
 import type { UserType, SignupModel, TokenModel, LoginBaseModel } from '@/types'
-
 import { httpRequest } from './axios'
 import { LoginType } from '@/enums'
 
@@ -10,7 +8,7 @@ export class AuthAPI {
   static REFRESH_API_URL = `${this.AUTH_API_PREFIX}/refresh`
 
   /**
-   * 登录
+   * 用户名登录
    */
   static login(data: LoginBaseModel, type: LoginType) {
     return httpRequest.post<UserType>(
@@ -18,6 +16,13 @@ export class AuthAPI {
       { ...data },
       { params: { type } }
     )
+  }
+
+  /**
+   * Github登录
+   */
+  static loginByGithub(code: string, type: LoginType) {
+    return httpRequest.get<UserType>(`${this.AUTH_API_PREFIX}/github?code=${code}&type=${type}`)
   }
 
   /**

@@ -45,3 +45,4 @@ Attributify
 exceljs
 webp
 titlebar
+WECHAT
