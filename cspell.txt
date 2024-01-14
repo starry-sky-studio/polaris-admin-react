@@ -43,3 +43,4 @@ EARLYHINTS
 axios
 Attributify
 exceljs
+webp

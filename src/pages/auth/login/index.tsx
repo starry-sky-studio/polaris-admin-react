@@ -2,6 +2,8 @@ import { Form, Checkbox, Divider } from 'antd'
 import { RememberModel, R, UserType } from '@/types'
 import { LoginType } from '@/enums'
 import { useRedirect, useLoginForm, useHandleLoginResult } from './hooks'
+import { GithubLogin, GoogleLogin } from './components'
+
 export function Component() {
   const [loginType, setLoginType] = useState<LoginType>(LoginType.USERNAME)
   const { handleRedirect, handleSignup } = useRedirect()
@@ -22,6 +24,15 @@ export function Component() {
     handleRedirect()
   }
 
+  function handleLoginType(params: LoginType) {
+    setLoginType(params)
+  }
+
+  function onFinish(values: RememberModel) {
+    handleLoginType(LoginType.USERNAME)
+    loginMutation.mutate(values)
+  }
+
   return (
     <div className="px-2">
       <Form
@@ -30,7 +41,7 @@ export function Component() {
         autoComplete="off"
         form={loginForm}
         disabled={loginMutation.isPending}
-        onFinish={(values) => loginMutation.mutate(values)}
+        onFinish={onFinish}
       >
         <div className="text-center text-lg py-2">登录</div>
         <Form.Item<RememberModel>
@@ -81,18 +92,8 @@ export function Component() {
           第三方登录
         </Divider>
         <div className="flex  justify-center items-center gap-2 py-2">
-          <Icon
-            icon="mdi:github"
-            height={24}
-            className="cursor-pointer"
-            onClick={() => setLoginType(LoginType.EMAIL)}
-          />
-          <Icon
-            icon="basil:google-alt-solid"
-            height={26}
-            className="cursor-pointer"
-            onClick={() => setLoginType(LoginType.EMAIL)}
-          />
+          <GithubLogin handleLoginType={handleLoginType} />
+          <GoogleLogin handleLoginType={handleLoginType} />
         </div>
       </div>
     </div>
