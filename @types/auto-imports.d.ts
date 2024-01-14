@@ -15,6 +15,7 @@ declare global {
   const Button: typeof import('antd')['Button']
   const Card: typeof import('antd')['Card']
   const ExcelUtils: typeof import('../src/utils/excel')['ExcelUtils']
+  const GitHubAuthUtils: typeof import('../src/utils/github')['GitHubAuthUtils']
   const GlobalEnvConfig: typeof import('@/constants')['GlobalEnvConfig']
   const Icon: typeof import('@iconify/react')['Icon']
   const Input: typeof import('antd')['Input']

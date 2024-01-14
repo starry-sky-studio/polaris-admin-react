@@ -100,5 +100,10 @@ export const router = createBrowserRouter([
         loader: () => '注册'
       }
     ]
+  },
+  {
+    path: '/auth/redirect',
+    lazy: () => import('@/pages/auth/AuthRedirect'),
+    loader: () => '重定向页面'
   }
 ])

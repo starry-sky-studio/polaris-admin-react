@@ -8,5 +8,7 @@ export const GlobalEnvConfig = Object.freeze({
   BASE_API_URL: import.meta.env.VITE_BASE_API_URL ?? '',
   MODE: import.meta.env.MODE,
   IS_DEV: import.meta.env.DEV,
-  IS_PROD: import.meta.env.PROD
+  IS_PROD: import.meta.env.PROD,
+  GITHUB_ClIENT_ID: import.meta.env.VITE_GITHUB_ClIENT_ID ?? '',
+  GITHUB_REDIRECT_URL: import.meta.env.VITE_GITHUB_REDIRECT_URL ?? ''
 })

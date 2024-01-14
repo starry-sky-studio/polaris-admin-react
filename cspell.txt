@@ -44,3 +44,4 @@ axios
 Attributify
 exceljs
 webp
+titlebar
