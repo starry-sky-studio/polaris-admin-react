@@ -31,7 +31,7 @@ export function Component() {
         disabled={signupMutation.isPending}
         onFinish={(values) => signupMutation.mutate(values)}
       >
-        <div className="text-center text-lg py-2">登录</div>
+        <div className="text-center text-lg py-2">注册</div>
         <Form.Item<SignupModel>
           name="username"
           rules={[{ required: true, message: '请输入用户名' }]}

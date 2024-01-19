@@ -23,7 +23,6 @@ export class GitHubAuthUtils {
    * 获取 GitHub OAuth2.0 授权地址
    */
   static getAuthUrl(): string {
-    console.log(GlobalEnvConfig.GITHUB_ClIENT_ID)
     return `${this.GITHUB_AUTH_URL}?client_id=${GlobalEnvConfig.GITHUB_ClIENT_ID}&redirect_uri=${this.GITHUB_REDIRECT_URL}`
   }
 

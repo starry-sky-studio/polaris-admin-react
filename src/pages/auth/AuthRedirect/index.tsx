@@ -14,7 +14,8 @@ export function Component() {
       const code = params.get('code')
       if (code) {
         setGithubCode(code)
-        window.opener.postMessage(code, window.location.origin)
+        console.log(code, 'code')
+        window.opener.postMessage(githubCode, window.location.origin)
       }
     } else {
       navigate('/login', { replace: true })

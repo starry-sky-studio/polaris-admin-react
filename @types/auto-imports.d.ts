@@ -24,6 +24,7 @@ declare global {
   const NavLink: typeof import('react-router-dom')['NavLink']
   const Navigate: typeof import('react-router-dom')['Navigate']
   const Outlet: typeof import('react-router-dom')['Outlet']
+  const QrcodeUtils: typeof import('../src/utils/qrcode')['QrcodeUtils']
   const Route: typeof import('react-router-dom')['Route']
   const Routes: typeof import('react-router-dom')['Routes']
   const SiteUtils: typeof import('../src/utils/site')['SiteUtils']
