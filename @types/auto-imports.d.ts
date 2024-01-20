@@ -55,6 +55,7 @@ declare global {
   const useInsertionEffect: typeof import('react')['useInsertionEffect']
   const useLayoutEffect: typeof import('react')['useLayoutEffect']
   const useLinkClickHandler: typeof import('react-router-dom')['useLinkClickHandler']
+  const useLoad: typeof import('../src/hooks/useLoad')['useLoad']
   const useLocation: typeof import('react-router-dom')['useLocation']
   const useMemo: typeof import('react')['useMemo']
   const useMutation: typeof import('@tanstack/react-query')['useMutation']
