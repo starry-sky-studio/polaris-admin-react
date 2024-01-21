@@ -1,5 +1,4 @@
 import { Input } from 'antd'
-
 import { QrcodeProps } from '@/utils'
 import { useLoad } from '@/hooks'
 export function Component() {
@@ -66,7 +65,6 @@ export function Component() {
           disabled={isLoad}
           onChange={(e) => setText(e.target.value)}
         />
-
         <Button
           loading={isLoad}
           type="primary"
@@ -77,8 +75,6 @@ export function Component() {
         <Button onClick={fetchData}>测试</Button>
         {loading ? 'true' : 'false'}
       </div>
-      {isLoad ? 'true' : 'false'}
-      {loadIndex}
       <div className="w-full sm:w-[1/2] h-full  flex justify-start flex-col items-center gap-2">
         <div>
           <img

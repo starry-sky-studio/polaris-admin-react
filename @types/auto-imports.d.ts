@@ -30,6 +30,7 @@ declare global {
   const SiteUtils: typeof import('../src/utils/site')['SiteUtils']
   const ThemeUtils: typeof import('../src/utils/theme')['ThemeUtils']
   const UploadAPI: typeof import('../src/api/uploads')['UploadAPI']
+  const UserAPI: typeof import('../src/api/user')['UserAPI']
   const clsx: typeof import('clsx')['default']
   const create: typeof import('zustand')['create']
   const createRef: typeof import('react')['createRef']
