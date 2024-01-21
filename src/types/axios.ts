@@ -45,3 +45,15 @@ export interface PendingTask {
    */
   resolve: (value: unknown) => void
 }
+
+// 排序枚举类型
+export enum OrderType {
+  descend = 'desc',
+  ascend = 'asc'
+}
+
+// 排序参数
+export interface Sorter {
+  key: string
+  order: OrderType
+}
