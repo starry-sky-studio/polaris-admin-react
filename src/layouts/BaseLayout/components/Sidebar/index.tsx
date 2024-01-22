@@ -88,6 +88,24 @@ const items: MenuProps['items'] = [
       )
     ]
   ),
+  getItem(
+    '组件',
+    'components',
+    <Icon
+      icon="ic:baseline-donut-large"
+      height={18}
+    />,
+    [
+      getItem(
+        '虚拟列表',
+        '/components/virtual-list',
+        <Icon
+          icon="ic:twotone-playlist-add"
+          height={18}
+        />
+      )
+    ]
+  ),
 
   getItem(
     '错误页面',

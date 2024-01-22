@@ -77,6 +77,18 @@ export const router = createBrowserRouter([
         ]
       },
       {
+        path: '/components',
+        lazy: () => import('@/pages/components'),
+        loader: () => '组件',
+        children: [
+          {
+            path: '/components/virtual-list',
+            lazy: () => import('@/pages/components/virtual-list'),
+            loader: () => '虚拟列表'
+          }
+        ]
+      },
+      {
         path: '*',
         lazy: () => import('@/pages/error-pages/404'),
         loader: () => '资源未找到'
