@@ -5,7 +5,6 @@ export function Component() {
   const [text, setText] = useState<string>()
   const [url, setUrl] = useState<string>()
   const { isLoad, loadIndex, enterLoad, quitLoad } = useLoad()
-  const [loading, setLoading] = useState(false)
   const qrcodeProps: QrcodeProps = {
     errorCorrectionLevel: 'H',
     // color: {
@@ -20,11 +19,11 @@ export function Component() {
       message.warning('请先输入内容')
       return
     }
-    console.log('111', loadIndex)
     enterLoad()
     QrcodeUtils.generateQrcode(text, qrcodeProps)
       .then((res) => {
         setUrl(res)
+
         message.success('生成二维码成功')
       })
       .catch(() => {
@@ -37,16 +36,8 @@ export function Component() {
       })
   }
 
-  const fetchData = () => {
-    enterLoad()
-    setLoading(true)
-
-    // 模拟异步请求
-    setTimeout(() => {
-      // 请求完成后调用quitLoad
-      quitLoad()
-      setLoading(false)
-    }, 2000)
+  const handleUpload = () => {
+    BrowserUtils.downloadFile(url, '二维码')
   }
 
   return (
@@ -72,8 +63,6 @@ export function Component() {
         >
           生成二维码
         </Button>
-        <Button onClick={fetchData}>测试</Button>
-        {loading ? 'true' : 'false'}
       </div>
       <div className="w-full sm:w-[1/2] h-full  flex justify-start flex-col items-center gap-2">
         <div>
@@ -82,7 +71,14 @@ export function Component() {
             alt=""
           />
         </div>
-        {url && <Button type="primary">下载二维码</Button>}
+        {url && (
+          <Button
+            type="primary"
+            onClick={handleUpload}
+          >
+            下载二维码
+          </Button>
+        )}
       </div>
     </div>
   )

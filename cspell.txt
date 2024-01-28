@@ -46,3 +46,4 @@ exceljs
 webp
 titlebar
 WECHAT
+cropperjs

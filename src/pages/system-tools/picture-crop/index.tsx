@@ -14,10 +14,6 @@ export function Component() {
       imgRef.current.src = e.target.result
     }
     reader.readAsDataURL(file)
-
-    // 实现本地预览
-    //   const imgElement = document.querySelector('imgUrl')
-    //   imgElement.src = URL.createObjectURL(file)
   }
 
   //2.实现部分上传

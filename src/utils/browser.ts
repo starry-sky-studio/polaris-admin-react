@@ -21,4 +21,20 @@ export class BrowserUtils {
       this.copyText(text)
     }
   }
+
+  /**
+   * 下载文件
+   * @param url 文件地址
+   * @param fileName 下载后的文件名
+   * @example
+   * ```ts
+   * BrowserUtils.downloadFile("FILE_URL", "FILE_NAME")
+   * ```
+   */
+  static downloadFile(url: string, fileName: string) {
+    const aElement = document.createElement('a')
+    aElement.href = url
+    aElement.setAttribute('download', fileName)
+    aElement.click()
+  }
 }

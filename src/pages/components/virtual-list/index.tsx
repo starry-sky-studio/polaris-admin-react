@@ -72,35 +72,37 @@ export function Component() {
   )
 
   return (
-    <div
-      ref={allRef}
-      className="flex flex-col  justify-center item-center"
-    >
-      <div> 虚拟列表 {state.currentOffset}</div>
+    <div className="w-[320px]">
+      <div className="text-center py-2"> 虚拟列表 {state.currentOffset}</div>
       <div
-        style={{ height: state.scrollAllHeight, overflow: 'scroll', position: 'relative' }}
-        ref={scrollRef}
+        ref={allRef}
+        className="flex flex-col h-[500px] border justify-center item-center"
       >
-        {/* 占位，列表的总高度，用于生成滚动条 */}
         <div
-          className="absolute left-0 right-0 top-0 "
-          style={{ height: state.listHeight }}
-        />
-        {/* 内容区域 */}
-        <div
-          className="relative left-0 top-0 right-0 "
-          style={{
-            transform: `translate3d(0, ${state.currentOffset}px, 0)`
-          }}
+          style={{ height: state.scrollAllHeight, overflow: 'scroll', position: 'relative' }}
+          ref={scrollRef}
         >
-          {state.data.map((item) => {
-            return (
-              <ItemRender
-                key={item}
-                id={item}
-              />
-            )
-          })}
+          {/* 占位，列表的总高度，用于生成滚动条 */}
+          <div
+            className="absolute left-0 right-0 top-0 "
+            style={{ height: state.listHeight }}
+          />
+          {/* 内容区域 */}
+          <div
+            className="relative left-0 top-0 right-0 "
+            style={{
+              transform: `translate3d(0, ${state.currentOffset}px, 0)`
+            }}
+          >
+            {state.data.map((item) => {
+              return (
+                <ItemRender
+                  key={item}
+                  id={item}
+                />
+              )
+            })}
+          </div>
         </div>
       </div>
     </div>
