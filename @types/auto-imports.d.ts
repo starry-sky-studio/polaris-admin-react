@@ -40,6 +40,7 @@ declare global {
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
   const message: typeof import('antd')['message']
+  const parallelTask: typeof import('../src/utils/parallelTasks')['parallelTask']
   const socket: typeof import('../src/utils/socket')['socket']
   const startTransition: typeof import('react')['startTransition']
   const useBearStore: typeof import('../src/store/theme')['useBearStore']
