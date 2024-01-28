@@ -73,6 +73,11 @@ export const router = createBrowserRouter([
             path: '/system-tools/iframe',
             lazy: () => import('@/pages/system-tools/iframe'),
             loader: () => 'iframe'
+          },
+          {
+            path: '/system-tools/picture-crop',
+            lazy: () => import('@/pages/system-tools/picture-crop'),
+            loader: () => '图片剪裁'
           }
         ]
       },

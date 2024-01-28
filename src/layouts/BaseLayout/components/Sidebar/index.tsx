@@ -85,6 +85,14 @@ const items: MenuProps['items'] = [
           icon="ic:outline-folder"
           height={18}
         />
+      ),
+      getItem(
+        '图片剪裁',
+        '/system-tools/picture-crop',
+        <Icon
+          icon="ic:baseline-crop"
+          height={18}
+        />
       )
     ]
   ),
