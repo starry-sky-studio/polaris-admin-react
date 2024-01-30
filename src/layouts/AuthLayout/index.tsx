@@ -1,6 +1,15 @@
 import { Outlet } from 'react-router-dom'
 import imgUrl from '@/assets/favicon.ico'
+import Loading from '@/components/loading'
 export default function AuthLayout() {
+  const { isLoading } = useAuthGuard({ skipAuth: true })
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    )
+  }
   return (
     <main className="flex h-screen">
       <div className=" bg-indigo-100 dark:bg-gray-700 w-0  sm:w-1/2 h-full flex flex-col  justify-center items-center">

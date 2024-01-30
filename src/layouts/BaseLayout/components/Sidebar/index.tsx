@@ -154,7 +154,7 @@ const items: MenuProps['items'] = [
 export default function Sidebar() {
   const navigator = useNavigate()
   return (
-    <Layout.Sider className=" border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0">
+    <Layout.Sider className="border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0 ">
       <div className="h-16 flex justify-center items-center gap-2">
         <img
           width={28}

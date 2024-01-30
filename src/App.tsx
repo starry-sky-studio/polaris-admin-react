@@ -8,9 +8,11 @@ import { HappyProvider } from '@ant-design/happy-work-theme'
 import { ConfigProvider } from 'antd'
 import { StyleProvider } from '@ant-design/cssinjs'
 import { useThemeStore } from '@/store'
+
 function App() {
   const themeStore = useThemeStore()
   const queryClient = new QueryClient()
+
   return (
     <>
       <Suspense

@@ -37,4 +37,17 @@ export class BrowserUtils {
     aElement.setAttribute('download', fileName)
     aElement.click()
   }
+
+  /**
+   * 判定是否是移动端
+   * @description 响应式请使用 useMediaQuery
+   * @returns 是否是移动端
+   * @example
+   * ```ts
+   * const isMobile = BrowserUtils.isMobile()
+   * ```
+   */
+  static isMobile(): boolean {
+    return window.matchMedia('only screen and (max-width: 640px)').matches
+  }
 }
