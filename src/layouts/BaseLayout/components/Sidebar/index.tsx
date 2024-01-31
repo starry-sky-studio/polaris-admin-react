@@ -1,6 +1,8 @@
 import { Menu } from 'antd'
 import imgUrl from '@/assets/favicon.ico'
 import type { MenuProps } from 'antd'
+import { useSidebarStore } from '@/store/sidebar'
+import { CollapseButton } from './components'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem(
@@ -153,8 +155,14 @@ const items: MenuProps['items'] = [
 
 export default function Sidebar() {
   const navigator = useNavigate()
+  const sidebarStore = useSidebarStore()
   return (
-    <Layout.Sider className="border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0 ">
+    <Layout.Sider
+      collapsible
+      collapsed={sidebarStore.isCollapse}
+      onCollapse={() => sidebarStore.toggleCollapse()}
+      className="border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0 "
+    >
       <div className="h-16 flex justify-center items-center gap-2">
         <img
           width={28}
@@ -170,6 +178,7 @@ export default function Sidebar() {
         className=""
         onSelect={({ key }) => navigator(key)}
       />
+      <CollapseButton />
     </Layout.Sider>
   )
 }

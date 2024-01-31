@@ -1,9 +1,16 @@
+import { useSidebarStore } from '@/store/sidebar'
 export default function CollapseButton() {
+  const sidebarStore = useSidebarStore()
   return (
-    <div className="h-10 p-1">
-      <div className="group flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-[opacity,background] hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600">
-        122
-      </div>
+    <div className="h-16 bg-white dark:#36393F flex justify-center items-center">
+      <Icon
+        className="cursor-pointer"
+        icon={
+          sidebarStore.isCollapse ? 'ic:baseline-arrow-back-ios' : 'ic:baseline-arrow-forward-ios'
+        }
+        height={24}
+        onClick={sidebarStore.isCollapse}
+      />
     </div>
   )
 }

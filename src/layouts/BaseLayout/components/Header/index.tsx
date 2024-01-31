@@ -2,7 +2,7 @@ import { GitHubButton, MenuVisibilityToggle, UserAvatar, ThemeToggle } from './c
 
 export default function Header() {
   return (
-    <Layout.Header className="dark:border-b-black  h-16 px-2  flex justify-between items-center border-b border-slate-300  shadow">
+    <Layout.Header className="dark:border-b-black  h-16 !px-2  flex justify-between items-center border-b border-slate-300  shadow">
       <div>
         <MenuVisibilityToggle />
       </div>
