@@ -156,12 +156,19 @@ const items: MenuProps['items'] = [
 export default function Sidebar() {
   const navigator = useNavigate()
   const sidebarStore = useSidebarStore()
+
   return (
     <Layout.Sider
+      className={clsx(
+        '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm dark:border-gray-950 sm:!static',
+        !sidebarStore.isDisplay && 'border-r-0'
+      )}
       collapsible
       collapsed={sidebarStore.isCollapse}
-      onCollapse={() => sidebarStore.toggleCollapse()}
-      className="border-r dark:border-r-black shadow overflow-auto h-screen w-screen fixed left-0 top-0 bottom-0 "
+      onCollapse={(value) => sidebarStore.setIsCollapse(value)}
+      width={sidebarStore.isDisplay ? 224 : 0}
+      collapsedWidth={sidebarStore.isDisplay ? 64 : 0}
+      trigger={null}
     >
       <div className="h-16 flex justify-center items-center gap-2">
         <img
@@ -169,7 +176,7 @@ export default function Sidebar() {
           src={imgUrl}
           alt=""
         />
-        <span>{AppMetadata.APP_NAME}</span>
+        {!sidebarStore.isCollapse && <span>{AppMetadata.APP_NAME}</span>}
       </div>
       <Menu
         mode="inline"
@@ -178,6 +185,7 @@ export default function Sidebar() {
         className=""
         onSelect={({ key }) => navigator(key)}
       />
+
       <CollapseButton />
     </Layout.Sider>
   )
