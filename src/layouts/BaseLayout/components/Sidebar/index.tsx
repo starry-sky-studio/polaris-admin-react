@@ -3,6 +3,7 @@ import imgUrl from '@/assets/favicon.ico'
 import type { MenuProps } from 'antd'
 import { useSidebarStore } from '@/store/sidebar'
 import { CollapseButton } from './components'
+import { useResponsive } from 'ahooks'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem(
@@ -156,6 +157,15 @@ const items: MenuProps['items'] = [
 export default function Sidebar() {
   const navigator = useNavigate()
   const sidebarStore = useSidebarStore()
+  const responsive = useResponsive()
+
+  useEffect(() => {
+    console.log(responsive.xs)
+    if (responsive.xs) {
+      sidebarStore.setIsCollapse(false)
+      sidebarStore.setIsDisplay(false)
+    }
+  }, [responsive.xs])
 
   return (
     <Layout.Sider
@@ -170,6 +180,12 @@ export default function Sidebar() {
       collapsedWidth={sidebarStore.isDisplay ? 64 : 0}
       trigger={null}
     >
+      {Object.keys(responsive).map((key) => (
+        <p key={key}>
+          {key} {responsive[key] ? '✔' : '✘'}
+        </p>
+      ))}
+
       <div className="h-16 flex justify-center items-center gap-2">
         <img
           width={28}
