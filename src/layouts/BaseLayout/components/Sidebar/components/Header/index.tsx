@@ -1,3 +1,15 @@
+import imgUrl from '@/assets/favicon.ico'
 export default function Header() {
-  return <div className="flex h-14 w-full items-center justify-center">Header</div>
+  const sidebarStore = useSidebarStore()
+
+  return (
+    <div className="h-16 flex justify-center items-center gap-2">
+      <img
+        width={28}
+        src={imgUrl}
+        alt=""
+      />
+      {!sidebarStore.isCollapse && <span>{AppMetadata.APP_NAME}</span>}
+    </div>
+  )
 }
