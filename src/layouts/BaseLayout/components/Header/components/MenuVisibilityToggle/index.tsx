@@ -12,7 +12,7 @@ export default function MenuVisibilityToggle() {
         className="cursor-pointer"
         icon={sidebarStore.isDisplay ? 'line-md:menu-fold-left' : 'line-md:menu-fold-right'}
         height={24}
-        onClick={sidebarStore.toggleDisplay}
+        onClick={() => sidebarStore.toggleDisplay()}
       />
     </Tooltip>
   )

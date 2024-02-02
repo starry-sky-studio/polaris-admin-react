@@ -2,8 +2,7 @@ import { Menu } from 'antd'
 import imgUrl from '@/assets/favicon.ico'
 import type { MenuProps } from 'antd'
 import { useSidebarStore } from '@/store/sidebar'
-import { CollapseButton } from './components'
-import { useResponsive } from 'ahooks'
+import { CollapseButton, Mask } from './components'
 type MenuItem = Required<MenuProps>['items'][number]
 
 function getItem(
@@ -157,52 +156,40 @@ const items: MenuProps['items'] = [
 export default function Sidebar() {
   const navigator = useNavigate()
   const sidebarStore = useSidebarStore()
-  const responsive = useResponsive()
-
-  useEffect(() => {
-    console.log(responsive.xs)
-    if (responsive.xs) {
-      sidebarStore.setIsCollapse(false)
-      sidebarStore.setIsDisplay(false)
-    }
-  }, [responsive.xs])
 
   return (
-    <Layout.Sider
-      className={clsx(
-        '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm dark:border-gray-950 sm:!static',
-        !sidebarStore.isDisplay && 'border-r-0'
-      )}
-      collapsible
-      collapsed={sidebarStore.isCollapse}
-      onCollapse={(value) => sidebarStore.setIsCollapse(value)}
-      width={sidebarStore.isDisplay ? 224 : 0}
-      collapsedWidth={sidebarStore.isDisplay ? 64 : 0}
-      trigger={null}
-    >
-      {Object.keys(responsive).map((key) => (
-        <p key={key}>
-          {key} {responsive[key] ? '✔' : '✘'}
-        </p>
-      ))}
-
-      <div className="h-16 flex justify-center items-center gap-2">
-        <img
-          width={28}
-          src={imgUrl}
-          alt=""
+    <>
+      <Mask />
+      <Layout.Sider
+        className={clsx(
+          '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm dark:border-gray-950 sm:!static',
+          !sidebarStore.isDisplay && 'border-r-0'
+        )}
+        collapsible
+        collapsed={sidebarStore.isCollapse}
+        onCollapse={(value) => sidebarStore.setIsCollapse(value)}
+        width={sidebarStore.isDisplay ? 224 : 0}
+        collapsedWidth={sidebarStore.isDisplay ? 64 : 0}
+        trigger={null}
+      >
+        <div className="h-16 flex justify-center items-center gap-2">
+          <img
+            width={28}
+            src={imgUrl}
+            alt=""
+          />
+          {!sidebarStore.isCollapse && <span>{AppMetadata.APP_NAME}</span>}
+        </div>
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['4']}
+          items={items}
+          className=""
+          onSelect={({ key }) => navigator(key)}
         />
-        {!sidebarStore.isCollapse && <span>{AppMetadata.APP_NAME}</span>}
-      </div>
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={['4']}
-        items={items}
-        className=""
-        onSelect={({ key }) => navigator(key)}
-      />
 
-      <CollapseButton />
-    </Layout.Sider>
+        <CollapseButton />
+      </Layout.Sider>
+    </>
   )
 }
