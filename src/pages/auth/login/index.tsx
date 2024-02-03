@@ -24,10 +24,6 @@ export function Component() {
     handleRedirect()
   }
 
-  // const blocker = useBlocker(({ currentLocation, nextLocation }) => {
-  //   console.log(currentLocation.pathname, nextLocation.pathname, '111')
-  // })
-
   function handleLoginType(params: LoginType) {
     setLoginType(params)
   }
@@ -39,7 +35,6 @@ export function Component() {
 
   return (
     <div className="px-2">
-      {/* {blocker.state ? '1' : '0'} */}
       <Form
         name="basic"
         initialValues={{ remember: false }}

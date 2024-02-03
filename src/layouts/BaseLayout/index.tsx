@@ -13,7 +13,6 @@ export default function DpBaseLayout() {
   useEffect(() => {
     const length = matches.length - 1
     const tabs = matches[length]
-    console.log(tabs?.pathname as string)
     tabsStore.addTab({
       href: tabs?.pathname as string,
       label: tabs?.data as string,
