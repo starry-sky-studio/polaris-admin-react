@@ -50,4 +50,37 @@ export class BrowserUtils {
   static isMobile(): boolean {
     return window.matchMedia('only screen and (max-width: 640px)').matches
   }
+
+  /**
+   * 禁止手势缩放
+   * @description 该方法用于禁止移动端手势缩放，以提高更好的用户体验。适配 Web 手机端页面，在页面初始化的时候调用即可。
+   * @example
+   * ```ts
+   * BrowserUtils.disableGestureScale()
+   * ```
+   */
+  static disableGestureScale() {
+    document.addEventListener(
+      'gesturestart',
+      (event) => {
+        event.preventDefault()
+      },
+      false
+    )
+    let lastTouchEnd = 0
+    document.documentElement.addEventListener(
+      'touchend',
+      (event) => {
+        const now = Date.now()
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault()
+        }
+        lastTouchEnd = now
+      },
+      false
+    )
+    document.addEventListener('gesturestart', (event) => {
+      event.preventDefault()
+    })
+  }
 }
