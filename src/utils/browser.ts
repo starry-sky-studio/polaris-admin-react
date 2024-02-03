@@ -83,4 +83,27 @@ export class BrowserUtils {
       event.preventDefault()
     })
   }
+
+  /**
+   * 设置站点标题
+   * @description
+   * @returns 设置网页标题
+   * @example
+   * ```ts
+   * const isMobile = BrowserUtils.isMobile()
+   * ```
+   */
+  isMobile(): boolean {
+    return window.matchMedia('only screen and (max-width: 640px)').matches
+  }
+  /**
+   * 生成页面标题
+   * @description
+   * - 如果传参，结果为 `当前页面标题 | 应用名称`
+   * - 默认为 `应用名称`
+   */
+  static setDocumentTitle(APP_NAME: string, title?: string) {
+    const name = title ? `${title} | ${APP_NAME}` : APP_NAME
+    document.title = name
+  }
 }

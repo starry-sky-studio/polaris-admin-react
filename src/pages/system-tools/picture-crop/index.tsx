@@ -5,7 +5,6 @@ export function Component() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
-    console.log(file)
 
     //把文件读出来 生成本地的url base64
     const reader = new FileReader()

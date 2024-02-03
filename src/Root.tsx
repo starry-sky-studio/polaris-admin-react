@@ -1,5 +1,7 @@
 import nprogress from 'nprogress'
+import { Suspense } from 'react'
 import { useNavigation } from 'react-router-dom'
+import { useMatches } from 'react-router-dom'
 
 //配置
 nprogress.configure({
@@ -13,7 +15,8 @@ nprogress.configure({
 export default function Root() {
   const navigation = useNavigation()
   const location = useLocation()
-
+  const matches = useMatches()
+  const { APP_NAME } = AppMetadata
   // 监听路由变化，显示进度条
   useEffect(() => {
     if (navigation.state === 'loading') {
@@ -25,14 +28,13 @@ export default function Root() {
 
   // 监听路由变化，动态修改页面标题
   useEffect(() => {
-    console.log(location, 'location')
-    //   const { title } = getRouteMetadata(location.pathname, routes) ?? {}
-    //   document.title = getDocumentTitle(typeof title === 'function' ? title() : title)
+    const name = matches.pop()?.data as string
+    BrowserUtils.setDocumentTitle(APP_NAME, name)
   }, [location.pathname])
 
   return (
-    <div>
+    <Suspense fallback={<div>加载</div>}>
       <Outlet />
-    </div>
+    </Suspense>
   )
 }

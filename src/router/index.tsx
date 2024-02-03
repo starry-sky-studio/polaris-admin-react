@@ -16,22 +16,47 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: loading(<BaseLayout />),
-        loader: () => '<div>加载中</div>',
+        loader: () => '系统功能',
+        id: '1',
+        handle: () => (
+          <Icon
+            icon="ic:baseline-auto-awesome"
+            height={18}
+          />
+        ),
         children: [
           {
             path: '/',
             lazy: () => import('@/pages'),
-            loader: () => '首页'
+            loader: () => '首页',
+            handle: () => (
+              <Icon
+                icon="ic:baseline-auto-awesome"
+                height={18}
+              />
+            )
           },
           {
             path: '/system/dictionaries',
             lazy: () => import('@/pages/system/dictionaries'),
-            loader: () => '字典'
+            loader: () => '字典',
+            handle: () => (
+              <Icon
+                icon="ic:sharp-menu-book"
+                height={18}
+              />
+            )
           },
           {
             path: '/system/users',
             lazy: () => import('@/pages/system/users'),
-            loader: () => '用户'
+            loader: () => '用户',
+            handle: () => (
+              <Icon
+                icon="ic:baseline-person"
+                height={18}
+              />
+            )
           },
           {
             path: '/error-pages',
@@ -137,3 +162,7 @@ export const router = createBrowserRouter([
     ]
   }
 ])
+
+export const getRouteMetadata = (path: string) => {
+  console.log(path)
+}
