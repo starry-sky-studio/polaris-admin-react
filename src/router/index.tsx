@@ -196,6 +196,12 @@ export const router = createBrowserRouter([
                 )
               }
             ]
+          },
+          {
+            path: '*',
+            lazy: () => import('@/pages/error-pages/404'),
+            loader: () => '资源未找到',
+            handle: () => {}
           }
         ]
       },
@@ -221,12 +227,6 @@ export const router = createBrowserRouter([
         path: '/auth/redirect',
         lazy: () => import('@/pages/auth/AuthRedirect'),
         loader: () => '重定向页面'
-      },
-      {
-        path: '*',
-        lazy: () => import('@/pages/error-pages/404'),
-        loader: () => '资源未找到',
-        handle: () => {}
       }
     ]
   }
