@@ -3,7 +3,6 @@ import 'nprogress/nprogress.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from '@/router'
 import { Suspense } from 'react'
-import { Loading } from './loading'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { HappyProvider } from '@ant-design/happy-work-theme'
@@ -17,13 +16,7 @@ function App() {
 
   return (
     <>
-      <Suspense
-        fallback={
-          <div>
-            <Loading />
-          </div>
-        }
-      >
+      <Suspense fallback={<div>12134</div>}>
         <QueryClientProvider client={queryClient}>
           <ConfigProvider
             theme={

@@ -54,7 +54,6 @@ export function Component() {
 
   useCreation(() => {
     state.data = list.slice(state.start, state.end)
-    console.log(state.data, 'state.data ')
   }, [state.start])
 
   useEventListener(
@@ -62,7 +61,6 @@ export function Component() {
     () => {
       // 顶部高度
       const { scrollTop } = scrollRef.current
-      console.log(scrollTop, 'scrollTop')
       state.start = Math.floor(scrollTop / state.itemHeight)
       state.end = Math.floor(scrollTop / state.itemHeight + state.renderCount + 1)
       state.currentOffset = scrollTop - (scrollTop % state.itemHeight)
