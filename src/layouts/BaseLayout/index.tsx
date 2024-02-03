@@ -12,13 +12,15 @@ export default function DpBaseLayout() {
 
   useEffect(() => {
     console.log(location, 'location')
-    console.log(matches.pop())
+    // console.log(matches.pop())
     const tabs = matches.pop()
+    console.log(tabs?.pathname as string)
     tabsStore.addTab({
       href: tabs?.pathname as string,
       label: tabs?.data as string,
       icon: tabs?.handle
     })
+    console.log(tabsStore.tabs, 'tabsStore.tabs')
   }, [location.pathname])
 
   const sidebarStore = useSidebarStore()

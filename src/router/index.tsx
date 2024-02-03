@@ -62,21 +62,45 @@ export const router = createBrowserRouter([
             path: '/error-pages',
             lazy: () => import('@/pages/error-pages'),
             loader: () => '错误页面',
+            handle: () => (
+              <Icon
+                icon="ic:twotone-error-outline"
+                height={18}
+              />
+            ),
             children: [
               {
                 path: '/error-pages/404',
                 lazy: () => import('@/pages/error-pages/404'),
-                loader: () => '资源未找到'
+                loader: () => '资源未找到',
+                handle: () => (
+                  <Icon
+                    icon="tabler:error-404"
+                    height={18}
+                  />
+                )
               },
               {
                 path: '/error-pages/403',
                 lazy: () => import('@/pages/error-pages/403'),
-                loader: () => '禁止访问'
+                loader: () => '禁止访问',
+                handle: () => (
+                  <Icon
+                    icon="ic:outline-block"
+                    height={18}
+                  />
+                )
               },
               {
                 path: '/error-pages/500',
                 lazy: () => import('@/pages/error-pages/500'),
-                loader: () => '服务器错误'
+                loader: () => '服务器错误',
+                handle: () => (
+                  <Icon
+                    icon="ic:outline-blur-off"
+                    height={18}
+                  />
+                )
               }
             ]
           },
@@ -84,36 +108,68 @@ export const router = createBrowserRouter([
             path: '/system-tools',
             lazy: () => import('@/pages/system-tools'),
             loader: () => '系统工具',
+            handle: () => (
+              <Icon
+                icon="ic:baseline-auto-fix-high"
+                height={18}
+              />
+            ),
             children: [
               {
                 path: '/system-tools/websocket',
                 lazy: () => import('@/pages/system-tools/websocket'),
-                loader: () => 'websocket'
+                loader: () => 'websocket',
+                handle: () => (
+                  <Icon
+                    icon="ic:round-swap-horizontal-circle"
+                    height={18}
+                  />
+                )
               },
               {
                 path: '/system-tools/excel',
                 lazy: () => import('@/pages/system-tools/excel'),
-                loader: () => 'excel'
+                loader: () => 'excel',
+                handle: () => (
+                  <Icon
+                    icon="ic:outline-insert-chart-outlined"
+                    height={18}
+                  />
+                )
               },
               {
                 path: '/system-tools/qrcode',
                 lazy: () => import('@/pages/system-tools/qrcode'),
-                loader: () => '二维码'
+                loader: () => '二维码',
+                handle: () => (
+                  <Icon
+                    icon="ic:sharp-qr-code-2"
+                    height={18}
+                  />
+                )
               },
               {
                 path: '/system-tools/multipart-upload',
                 lazy: () => import('@/pages/system-tools/multipart-upload'),
-                loader: () => '图片分片上传'
+                loader: () => '图片分片上传',
+                handle: () => (
+                  <Icon
+                    icon="ic:outline-folder"
+                    height={18}
+                  />
+                )
               },
-              {
-                path: '/system-tools/iframe',
-                lazy: () => import('@/pages/system-tools/iframe'),
-                loader: () => 'iframe'
-              },
+
               {
                 path: '/system-tools/picture-crop',
                 lazy: () => import('@/pages/system-tools/picture-crop'),
-                loader: () => '图片剪裁'
+                loader: () => '图片剪裁',
+                handle: () => (
+                  <Icon
+                    icon="ic:baseline-crop"
+                    height={18}
+                  />
+                )
               }
             ]
           },
@@ -121,18 +177,25 @@ export const router = createBrowserRouter([
             path: '/components',
             lazy: () => import('@/pages/components'),
             loader: () => '组件',
+            handle: () => (
+              <Icon
+                icon="ic:baseline-donut-large"
+                height={18}
+              />
+            ),
             children: [
               {
                 path: '/components/virtual-list',
                 lazy: () => import('@/pages/components/virtual-list'),
-                loader: () => '虚拟列表'
+                loader: () => '虚拟列表',
+                handle: () => (
+                  <Icon
+                    icon="ic:twotone-playlist-add"
+                    height={18}
+                  />
+                )
               }
             ]
-          },
-          {
-            path: '*',
-            lazy: () => import('@/pages/error-pages/404'),
-            loader: () => '资源未找到'
           }
         ]
       },
@@ -158,6 +221,12 @@ export const router = createBrowserRouter([
         path: '/auth/redirect',
         lazy: () => import('@/pages/auth/AuthRedirect'),
         loader: () => '重定向页面'
+      },
+      {
+        path: '*',
+        lazy: () => import('@/pages/error-pages/404'),
+        loader: () => '资源未找到',
+        handle: () => {}
       }
     ]
   }

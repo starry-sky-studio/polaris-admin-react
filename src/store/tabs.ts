@@ -18,6 +18,8 @@ export const useTabsStore = create<State & Actions>()(
     tabs: [],
     addTab: (tab: TabsModel) => {
       const exist = get().tabs.some((tabsItem) => tabsItem.href === tab.href)
+      console.log(tab, 'tabs')
+      console.log(exist, 'exist')
       if (!exist) {
         set((state) => {
           state.tabs.push(tab)
