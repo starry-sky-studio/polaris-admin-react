@@ -16,7 +16,7 @@ export default function TabsItem({ icon, label, href }: Props) {
       onClick={() => navigate(href)}
       className="!flex justify-between items-center !py-1 gap-2 cursor-pointer"
     >
-      Tag 2 21312
+      Tag
       {icon}
       {label}
       <Icon

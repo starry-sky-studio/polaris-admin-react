@@ -50,6 +50,7 @@ declare global {
   const useBearStore: typeof import('../src/store/theme')['useBearStore']
   const useCallback: typeof import('react')['useCallback']
   const useContext: typeof import('react')['useContext']
+  const useCountStore: typeof import('../src/store/tabs')['useCountStore']
   const useDebugValue: typeof import('react')['useDebugValue']
   const useDeferredValue: typeof import('react')['useDeferredValue']
   const useEffect: typeof import('react')['useEffect']
