@@ -82,6 +82,7 @@ declare global {
   const useSidebarStore: typeof import('../src/store/sidebar')['useSidebarStore']
   const useState: typeof import('react')['useState']
   const useSyncExternalStore: typeof import('react')['useSyncExternalStore']
+  const useTabsStore: typeof import('../src/store/tabs')['useTabsStore']
   const useThemeStore: typeof import('../src/store/theme')['useThemeStore']
   const useTransition: typeof import('react')['useTransition']
   const useUserStore: typeof import('../src/store/user')['useUserStore']

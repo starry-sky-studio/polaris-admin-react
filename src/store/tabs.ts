@@ -13,7 +13,7 @@ interface Actions {
   clearAll: () => void
 }
 
-export const useCountStore = create<State & Actions>()(
+export const useTabsStore = create<State & Actions>()(
   immer((set, get) => ({
     tabs: [],
     addTab: (tab: TabsModel) => {

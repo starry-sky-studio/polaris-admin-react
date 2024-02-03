@@ -44,3 +44,11 @@ body {
 .ant-card-body {
   height: 100%;
 }
+
+:root {
+  --main-bg-color: #9f7aea;
+}
+
+#nprogress .bar {
+  background-color: var(--main-bg-color) !important;
+}
