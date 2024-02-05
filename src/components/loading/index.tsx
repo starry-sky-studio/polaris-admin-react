@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="flex justify-center items-center  h-full">
+    <div>
       <Icon
         height={64}
         icon="svg-spinners:bars-scale"
