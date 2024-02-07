@@ -1,5 +1,4 @@
 import nprogress from 'nprogress'
-import { Suspense } from 'react'
 import { useNavigation } from 'react-router-dom'
 import { useMatches } from 'react-router-dom'
 
@@ -32,9 +31,5 @@ export default function Root() {
     BrowserUtils.setDocumentTitle(APP_NAME, name)
   }, [location.pathname])
 
-  return (
-    <Suspense fallback={<div>加载</div>}>
-      <Outlet />
-    </Suspense>
-  )
+  return <Outlet />
 }
