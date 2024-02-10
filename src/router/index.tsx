@@ -212,34 +212,33 @@ export const router = createBrowserRouter([
             ]
           },
           {
-            path: '/multi-level-menu',
-            //lazy: () => import('@/pages/components'),
+            path: '/multi-menu',
             loader: () => '多级菜单',
             handle: () => (
               <Icon
-                icon="ic:baseline-donut-large"
+                icon="mdi:newspaper-variant-multiple-outline"
                 height={18}
               />
             ),
             children: [
               {
-                path: '/multi-level-menu/1-1-1',
-                lazy: () => import('@/pages/components/virtual-list'),
+                path: '/multi-menu/1-1-1',
+                lazy: () => import('@/pages/multi-level-menu/1-1-1'),
                 loader: () => '1-1-1',
                 handle: () => (
                   <Icon
-                    icon="ic:twotone-playlist-add"
+                    icon="mdi:newspaper-variant-multiple-outline"
                     height={18}
                   />
                 )
               },
               {
-                path: '/multi-level-menu/1-1-2',
-                lazy: () => import('@/pages/components/virtual-list'),
+                path: '/multi-menu/1-1-2',
+                lazy: () => import('@/pages/multi-level-menu/1-1-2'),
                 loader: () => '1-1-2',
                 handle: () => (
                   <Icon
-                    icon="ic:twotone-playlist-add"
+                    icon="mdi:newspaper-variant-multiple-outline"
                     height={18}
                   />
                 )

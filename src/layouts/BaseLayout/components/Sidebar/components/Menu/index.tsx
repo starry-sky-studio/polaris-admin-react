@@ -147,6 +147,42 @@ const items: MenuProps['items'] = [
         />
       )
     ]
+  ),
+  getItem(
+    '多级菜单',
+    '/multi-menu',
+    <Icon
+      icon="mdi:newspaper-variant-multiple-outline"
+      height={18}
+    />,
+    [
+      getItem(
+        '1-1',
+        '/multi-menu/1-1',
+        <Icon
+          icon="mdi:newspaper-variant-multiple-outline"
+          height={18}
+        />,
+        [
+          getItem(
+            '1-1-1',
+            '/multi-menu/1-1-1',
+            <Icon
+              icon="mdi:newspaper-variant-multiple-outline"
+              height={18}
+            />
+          ),
+          getItem(
+            '1-1-2',
+            '/multi-menu/1-1-2',
+            <Icon
+              icon="mdi:newspaper-variant-multiple-outline"
+              height={18}
+            />
+          )
+        ]
+      )
+    ]
   )
 ]
 
