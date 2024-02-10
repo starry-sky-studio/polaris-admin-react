@@ -11,6 +11,7 @@ export default function DpBaseLayout() {
   const tabsStore = useTabsStore()
 
   useEffect(() => {
+    console.log(matches)
     const length = matches.length - 1
     const tabs = matches[length]
     tabsStore.addTab({

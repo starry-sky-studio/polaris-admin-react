@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: loading(<BaseLayout />),
-        loader: () => '系统功能',
+        loader: () => 'BaseLayout',
         id: '1',
         handle: () => (
           <Icon
@@ -28,36 +28,50 @@ export const router = createBrowserRouter([
           {
             path: '/',
             lazy: () => import('@/pages/system/home'),
-            loader: () => '首页',
+            loader: () => '系统功能',
             handle: () => (
               <Icon
                 icon="ic:baseline-auto-awesome"
                 height={18}
               />
-            )
+            ),
+            children: [
+              {
+                path: '/',
+                lazy: () => import('@/pages/system/home'),
+                loader: () => '首页',
+                handle: () => (
+                  <Icon
+                    icon="ic:baseline-auto-awesome"
+                    height={18}
+                  />
+                )
+              },
+              {
+                path: '/system/dictionaries',
+                lazy: () => import('@/pages/system/dictionaries'),
+                loader: () => '字典',
+                handle: () => (
+                  <Icon
+                    icon="ic:sharp-menu-book"
+                    height={18}
+                  />
+                )
+              },
+              {
+                path: '/system/users',
+                lazy: () => import('@/pages/system/users'),
+                loader: () => '用户',
+                handle: () => (
+                  <Icon
+                    icon="ic:baseline-person"
+                    height={18}
+                  />
+                )
+              }
+            ]
           },
-          {
-            path: '/system/dictionaries',
-            lazy: () => import('@/pages/system/dictionaries'),
-            loader: () => '字典',
-            handle: () => (
-              <Icon
-                icon="ic:sharp-menu-book"
-                height={18}
-              />
-            )
-          },
-          {
-            path: '/system/users',
-            lazy: () => import('@/pages/system/users'),
-            loader: () => '用户',
-            handle: () => (
-              <Icon
-                icon="ic:baseline-person"
-                height={18}
-              />
-            )
-          },
+
           {
             path: '/error-pages',
             lazy: () => import('@/pages/error-pages'),
@@ -188,6 +202,41 @@ export const router = createBrowserRouter([
                 path: '/components/virtual-list',
                 lazy: () => import('@/pages/components/virtual-list'),
                 loader: () => '虚拟列表',
+                handle: () => (
+                  <Icon
+                    icon="ic:twotone-playlist-add"
+                    height={18}
+                  />
+                )
+              }
+            ]
+          },
+          {
+            path: '/multi-level-menu',
+            //lazy: () => import('@/pages/components'),
+            loader: () => '多级菜单',
+            handle: () => (
+              <Icon
+                icon="ic:baseline-donut-large"
+                height={18}
+              />
+            ),
+            children: [
+              {
+                path: '/multi-level-menu/1-1-1',
+                lazy: () => import('@/pages/components/virtual-list'),
+                loader: () => '1-1-1',
+                handle: () => (
+                  <Icon
+                    icon="ic:twotone-playlist-add"
+                    height={18}
+                  />
+                )
+              },
+              {
+                path: '/multi-level-menu/1-1-2',
+                lazy: () => import('@/pages/components/virtual-list'),
+                loader: () => '1-1-2',
                 handle: () => (
                   <Icon
                     icon="ic:twotone-playlist-add"
