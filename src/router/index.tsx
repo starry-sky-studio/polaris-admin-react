@@ -222,27 +222,51 @@ export const router = createBrowserRouter([
             ),
             children: [
               {
-                path: '/multi-menu/1-1-1',
-                lazy: () => import('@/pages/multi-level-menu/1-1-1'),
+                path: '/multi-menu/1-1',
+                //lazy: () => import('@/pages/multi-level-menu/1-1-1'),
                 loader: () => '1-1-1',
                 handle: () => (
                   <Icon
                     icon="mdi:newspaper-variant-multiple-outline"
                     height={18}
                   />
-                )
-              },
-              {
-                path: '/multi-menu/1-1-2',
-                lazy: () => import('@/pages/multi-level-menu/1-1-2'),
-                loader: () => '1-1-2',
-                handle: () => (
-                  <Icon
-                    icon="mdi:newspaper-variant-multiple-outline"
-                    height={18}
-                  />
-                )
+                ),
+                children: [
+                  {
+                    path: '/multi-menu/1-1/1-1-1',
+                    lazy: () => import('@/pages/multi-level-menu/1-1-1'),
+                    loader: () => '1-1-1',
+                    handle: () => (
+                      <Icon
+                        icon="mdi:newspaper-variant-multiple-outline"
+                        height={18}
+                      />
+                    )
+                  },
+                  {
+                    path: '/multi-menu/1-1/1-1-2',
+                    lazy: () => import('@/pages/multi-level-menu/1-1-2'),
+                    loader: () => '1-1-2',
+                    handle: () => (
+                      <Icon
+                        icon="mdi:newspaper-variant-multiple-outline"
+                        height={18}
+                      />
+                    )
+                  }
+                ]
               }
+              // {
+              //   path: '/multi-menu/1-1-2',
+              //   lazy: () => import('@/pages/multi-level-menu/1-1-2'),
+              //   loader: () => '1-1-2',
+              //   handle: () => (
+              //     <Icon
+              //       icon="mdi:newspaper-variant-multiple-outline"
+              //       height={18}
+              //     />
+              //   )
+              // }
             ]
           },
           {
