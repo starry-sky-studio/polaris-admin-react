@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/',
-            lazy: () => import('@/pages/system/home'),
+            //lazy: () => import('@/pages/system/home'),
             loader: () => '系统功能',
             handle: () => (
               <Icon

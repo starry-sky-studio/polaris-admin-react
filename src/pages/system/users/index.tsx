@@ -1,4 +1,3 @@
-import { useLoaderData } from 'react-router-dom'
 import { Space, Table, Tag } from 'antd'
 import type { TableProps } from 'antd'
 
@@ -11,7 +10,6 @@ interface DataType {
 }
 
 export function Component() {
-  const albums = useLoaderData() as string
   const columns: TableProps<DataType>['columns'] = [
     {
       title: 'Name',
@@ -90,9 +88,11 @@ export function Component() {
 
   return (
     <>
-      <div>{albums}</div>
-      <Button type="default">新建</Button>
-      <Button type="primary">刷新</Button>
+      <div className="space-x-2 mb-2">
+        <Button type="default">新建</Button>
+        <Button type="primary">刷新</Button>
+      </div>
+
       <Table
         columns={columns}
         dataSource={data}
