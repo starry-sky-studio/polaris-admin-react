@@ -1,96 +1,109 @@
-import { Space, Table, Tag } from 'antd'
+import { Space, Table } from 'antd'
 import type { TableProps } from 'antd'
+import type { UserModel } from '@/types'
 
-interface DataType {
-  key: string
-  name: string
-  age: number
-  address: string
-  tags: string[]
-}
+// export interface UserModel {
+//   id: number
+//   username: string
+//   nickName?: string
+//   email?: string
+//   phoneNumber?: string
+//   avatarUrl?: string
+//   gender?: string
+//   country?: string
+//   province?: string
+//   city?: string
+//   biography?: string
+//   website?: string
+//   birthDate?: Date
+//   enabled: boolean
+// }
 
 export function Component() {
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<UserModel>['columns'] = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
       render: (text) => <a>{text}</a>
     },
     {
-      title: 'Age',
+      title: '用户名',
       dataIndex: 'age',
-      key: 'age'
+      key: 'username'
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address'
+      title: '头像',
+      dataIndex: 'avatarUrl',
+      key: 'avatarUrl'
     },
     {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'blue' : 'green'
-            if (tag === 'loser') {
-              color = 'volcano'
-            }
-            return (
-              <Tag
-                color={color}
-                key={tag}
-              >
-                {tag.toUpperCase()}
-              </Tag>
-            )
-          })}
-        </>
-      )
+      title: '昵称',
+      dataIndex: 'nickName',
+      key: 'nickName'
     },
     {
-      title: 'Action',
+      title: '邮箱',
+      key: 'email',
+      dataIndex: 'email'
+    },
+    {
+      title: '电话',
+      key: 'phoneNumber',
+      dataIndex: 'phoneNumber'
+    },
+    {
+      title: '性别',
+      key: 'gender',
+      dataIndex: 'gender',
+      render: (text) => {
+        return text == 1 ? '男' : '女'
+      }
+    },
+    {
+      title: '是否启用',
+      key: 'enabled',
+      dataIndex: 'enabled',
+      render: (enabled) => {
+        const text = enabled ? '启用' : '禁用'
+        return <span>{text}</span>
+      }
+    },
+
+    {
+      title: '出生年月',
+      key: 'birthDate',
+      dataIndex: 'birthDate'
+    },
+    {
+      title: '操作',
       key: 'action',
-      render: (_, record) => (
+      render: () => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          <a>编辑</a>
+          <a>删除</a>
         </Space>
       )
     }
   ]
 
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer']
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser']
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['cool', 'teacher']
-    }
-  ]
+  const data: UserModel[] = []
 
   return (
     <>
-      <div className="space-x-2 mb-2">
+      <div className="space-x-2 mb-2 flex justify-between items-center">
         <Button type="default">新建</Button>
-        <Button type="primary">刷新</Button>
+
+        <Button
+          shape="circle"
+          className="!flex justify-center items-center"
+          icon={
+            <Icon
+              icon="ic:baseline-refresh"
+              height={18}
+            />
+          }
+        />
       </div>
 
       <Table
