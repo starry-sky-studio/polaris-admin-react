@@ -12,7 +12,7 @@ export default function CollapseButton() {
   return (
     <div className={clsx('fixed bottom-0 left-0', collapseWidth)}>
       <div
-        className="h-16   border-t dark:border-slate-800  flex justify-center items-center transition-transform"
+        className="h-16  border-t dark:border-slate-800  flex justify-center items-center transition-transform"
         onClick={() => sidebarStore.toggleCollapse()}
       >
         <Icon

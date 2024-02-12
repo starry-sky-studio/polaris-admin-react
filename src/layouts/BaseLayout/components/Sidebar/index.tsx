@@ -29,8 +29,9 @@ export default function Sidebar() {
           />
           {!sidebarStore.isCollapse && <span>{AppMetadata.APP_NAME}</span>}
         </div>
-        <Menu />
-
+        <div className=" w-full h-[calc(100vh-128px)]  overflow-y-auto">
+          <Menu />
+        </div>
         <CollapseButton />
       </Layout.Sider>
     </>

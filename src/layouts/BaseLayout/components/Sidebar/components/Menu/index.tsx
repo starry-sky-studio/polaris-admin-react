@@ -193,7 +193,6 @@ export default function PoMenu() {
       mode="inline"
       defaultSelectedKeys={['4']}
       items={items}
-      className=""
       onSelect={({ key }) => navigator(key)}
     />
   )
