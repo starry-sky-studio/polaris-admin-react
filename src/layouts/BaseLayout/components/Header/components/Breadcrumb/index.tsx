@@ -1,5 +1,7 @@
 import { Breadcrumb } from 'antd'
-import { useMatches } from 'react-router-dom'
+// import { useMatches } from 'react-router-dom'
+// import type { BreadcrumbProps } from 'antd'
+
 const items = [
   {
     path: '/',
@@ -39,7 +41,7 @@ const items = [
   }
 ]
 export default function PoBreadcrumb() {
-  const matches = useMatches()
+  //const matches = useMatches()
   // const location = useLocation()
   // function itemRender(item: any, params: any, items: any, paths: any) {
   //   console.log(item, 'item')
@@ -50,20 +52,20 @@ export default function PoBreadcrumb() {
   //   return <span>123</span>
   // }
 
-  //const [menus, setMenus] = useState([])
+  // const [menus, setMenus] = useState<BreadcrumbProps[]>([])
 
-  useEffect(() => {
-    console.log(matches, '111211')
+  // useEffect(() => {
+  //   console.log(matches, '111211')
 
-    // const newMap = matches.slice(2).map((item) => {
-    //   return {
-    //     path: item.pathname,
-    //     title: item.data
-    //   }
-    // })
+  //   const newMap = matches.slice(2).map((item) => {
+  //     return {
+  //       path: item.pathname,
+  //       title: item.data
+  //     }
+  //   })
 
-    //setMenus(newMap)
-  })
+  //   setMenus(newMap)
+  // })
 
   return (
     <Breadcrumb
