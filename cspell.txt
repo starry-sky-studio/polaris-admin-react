@@ -47,3 +47,4 @@ webp
 titlebar
 WECHAT
 cropperjs
+keepalive
