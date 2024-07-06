@@ -110,6 +110,14 @@ const items: MenuProps['items'] = [
           icon="ic:twotone-playlist-add"
           height={18}
         />
+      ),
+      getItem(
+        '富文本编辑',
+        '/components/rich-text-editor',
+        <Icon
+          icon="ic:twotone-playlist-add"
+          height={18}
+        />
       )
     ]
   ),

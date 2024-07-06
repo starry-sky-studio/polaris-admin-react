@@ -208,6 +208,17 @@ export const router = createBrowserRouter([
                     height={18}
                   />
                 )
+              },
+              {
+                path: '/components/rich-text-editor',
+                lazy: () => import('@/pages/components/rich-text-editor'),
+                loader: () => '富文本编辑器',
+                handle: () => (
+                  <Icon
+                    icon="ic:twotone-playlist-add"
+                    height={18}
+                  />
+                )
               }
             ]
           },
