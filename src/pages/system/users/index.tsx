@@ -1,6 +1,7 @@
 import { Space, Table } from 'antd'
 import type { TableProps } from 'antd'
 import type { UserModel } from '@/types'
+import { useInfiniteQuery } from '@tanstack/react-query'
 
 // export interface UserModel {
 //   id: number
@@ -29,7 +30,7 @@ export function Component() {
     },
     {
       title: '用户名',
-      dataIndex: 'age',
+      dataIndex: 'username',
       key: 'username'
     },
     {
@@ -87,10 +88,75 @@ export function Component() {
     }
   ]
 
-  const data: UserModel[] = []
+  // const data: UserModel[] = []
+
+  const queryClient = useQueryClient()
+
+  // const result = useQuery({
+  //   queryKey: ['useList'],
+  //   queryFn: ({ signal }) =>
+  //     UserAPI.getUserLists(
+  //       {
+  //         page: 1,
+  //         pageSize: 10
+  //       },
+  //       signal
+  //     )
+  // })
+
+  const fetchData = async (page: number) => {
+    return UserAPI.getUserLists({
+      page,
+      pageSize: 10
+    })
+  }
+
+  // const prefetch = () => {
+  //   queryClient.prefetchQuery({
+  //     queryKey: ['useList'],
+  //     queryFn: fetchData,
+  //     staleTime: 60000
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   console.log(result)
+  // }, [])
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
+    queryKey: ['useList'],
+    queryFn: ({ pageParam }) => fetchData(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = allPages.length + 1
+      return nextPage
+    }
+  })
+
+  useEffect(() => {
+    console.log(data, fetchNextPage, hasNextPage, isFetchingNextPage)
+  }, [data, fetchNextPage, hasNextPage, isFetchingNextPage])
 
   return (
     <>
+      <button onClick={() => fetchNextPage()}>show detail</button>
+
+      <button
+        onClick={(e) => {
+          e.preventDefault()
+          queryClient.cancelQueries({ queryKey: ['useList'] })
+        }}
+      >
+        Cancel
+      </button>
+      <button
+        onClick={(e) => {
+          e.preventDefault()
+          queryClient.fetchQuery({ queryKey: ['useList'] })
+        }}
+      >
+        fetchQuery
+      </button>
       <div className="space-x-2 mb-2 flex justify-between items-center">
         <Button type="default">新建</Button>
 
@@ -106,10 +172,10 @@ export function Component() {
         />
       </div>
 
-      <Table
+      {/* <Table
         columns={columns}
         dataSource={data}
-      />
+      /> */}
     </>
   )
 }

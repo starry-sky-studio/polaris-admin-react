@@ -1,5 +1,10 @@
 import { CreateUserDto, PatchUserDto, UpdateUserDto, UserModel } from '@/types'
 
+interface getUserListsProps {
+  page: number
+  pageSize: number
+}
+
 export class UserAPI {
   private static USER_API_PREFIX = `/user`
 
@@ -29,8 +34,13 @@ export class UserAPI {
   /**
    * 得到用户信息列表
    */
-  static getUserLists(id: number) {
-    return httpRequest.post<UserModel>(`${this.USER_API_PREFIX}/${id}`)
+  static getUserLists(props: getUserListsProps, signal?: AbortSignal) {
+    return httpRequest.get<UserModel>(
+      `${this.USER_API_PREFIX}?page=${props.page}&pageSize=${props.pageSize}`,
+      {
+        signal
+      }
+    )
   }
 
   /**

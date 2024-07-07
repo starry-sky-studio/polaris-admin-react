@@ -12,7 +12,9 @@ import { useThemeStore } from '@/store'
 
 function App() {
   const themeStore = useThemeStore()
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: 2, retryDelay: 2000 } }
+  })
 
   return (
     <>

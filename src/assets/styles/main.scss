@@ -52,3 +52,7 @@ body {
 #nprogress .bar {
   background-color: var(--main-bg-color) !important;
 }
+
+.css-dev-only-do-not-override-ispy7g.ant-dropdown {
+  z-index: 10001 !important;
+}
